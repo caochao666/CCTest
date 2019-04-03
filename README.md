@@ -1,31 +1,43 @@
 # 环锂SDK集成文档
+
 ## 适用范围
-改为当适用于iOS10.0及以上操作系统
+
+HuanLiSDK适用于iOS10.0及以上操作系统
+
 
 # 集成准备
+
 ## 创建应用并获取AppKey和AppSercret
+
 AppKey是环锂用来标示App的唯一标识符，集成SDK前需要在创建应用并获取相应的AppKey。
 请开发者到官网注册自己的账号，创建应用用程序并获取对应的AppKey、AppSercret。
 具体操作请查看如下网址：网址链接 
 
+
 # 快速集成
+
 可使用Cocoapods进行自动集成或手动下载集成。
 
 ## 自动集成（Cocoapods）
+
     target 'HuanLiDemo' do
     pod 'HLApi'
     end
     
 ## 手动集成
+
 在官网下载最新版本SDK，包括HLApi.framework和HLImages.bundle 以及第三方分享SDK：QQ、微信、微博
 
 ### 导入SDK
+
 将下载的SDK添加到工程
 
 ### 添加项目配置
+
 target->Build Settings -> Other Linker Flags 加入-ObjC
 
 ### 加入依赖系统库
+
 General->Linked Frameworks and Libraries 添加依赖库<br>
 添加的是第三方分享SDK需要依赖的库<br>
     CFNetwork.framework
@@ -44,7 +56,9 @@ General->Linked Frameworks and Libraries 添加依赖库<br>
     libz.tbd
  
 ### 配置SSO白名单
+
 因应用使用了跳转到第三方分享功能，需要增加一个可跳转的白名单，即LSApplicationQueriesSchemes，否则将在SDK判断是否跳转时用到的canOpenURL时返回NO，进而只进行webview授权或授权/分享失败。在项目中的info.plist中加入应用白名单，右键info.plist选择source code打开(plist具体设置在Build Setting -> Packaging -> Info.plist File可获取plist路径)
+
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
@@ -101,6 +115,7 @@ General->Linked Frameworks and Libraries 添加依赖库<br>
 ```
 
 ### 配置URL Scheme
+
 * URL Scheme是通过系统找到并跳转对应app的一类设置，通过向项目中的info.plist文件中加入URL types可使用第三方平台所注册的appkey信息向系统注册你的app，当跳转到第三方应用授权或分享后，可直接跳转回你的app。
 * targets->info->URL Types 添加 URL Types
 * 配置第三方平台URL Scheme 
@@ -110,9 +125,13 @@ General->Linked Frameworks and Libraries 添加依赖库<br>
 |QQ|"tencent"+腾讯QQ互联应用appID|tencent100424468 |
 |微博|“wb”+新浪appKey|wb3921700954|
 
+
 # SDK 使用
+
 ## 初始化设置
+
 应用启动后进行HuanLiSDK和第三方平台的初始化工作，实现sdk回调
+
 ```OC
 #import <HLApi/HLApi.h>
 @interface AppDelegate ()<HLSdkProtocol,HLShareResultProtocol>
@@ -145,6 +164,7 @@ General->Linked Frameworks and Libraries 添加依赖库<br>
 ```
 
 ## 设置系统回调
+
 ```OC
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
