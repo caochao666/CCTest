@@ -199,7 +199,7 @@ SDK提供了一个继承于UIView的HLView运营位，根据运营位类型需�
     + (BOOL)hasDataWithType:(HLViewType)type positionCode:(NSString *)positionCode;
     
 ```
-#### 注意：必须使用HLView指定的初始化方法，创建运营位。可根据判断是否有运营位数据来自行显示隐藏运营位。  
+#### 注意：必须使用HLView指定的初始化方法，创建运营位。可根据是否有运营位数据显示或隐藏运营位。  
 
 ## HLWebViewController的使用
 HLWebViewController继承于UIViewController  
