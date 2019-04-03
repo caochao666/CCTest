@@ -162,5 +162,56 @@ QQ | "tencent"+腾讯QQ互联应用appID | tencent100424468 |
     return [HuanLiSDK handleOpenURL:url];
 }
 ```
+## 运营位集成
+SDK提供了一个继承于UIView的HLView运营位，根据运营位类型需要自行添加到相应位置。<br>
+运营位使用示例<br>
+```
+    // type 运营位显示类型，
+    // positionCode 运营id（环锂定义）
+    // placeHolder 占位图
+    // emptyDataBlock 请求失败或无数据时回调
+    HLView *launchView = [HLView viewWithViewType:HLViewTypeStartupPageFullScreen positionCode:@"start_up_full" placeHolder:@"launchDefault" block:^(BOOL isEmptyData) {
+        // 启动图无数据
+    }];
+    launchView.frame = self.view.bounds;
+    [self.view addSubview:launchView];
+    
+    // HLView另一种初始化方法
+    HLView *bannerView = [HLView viewWithViewType:HLViewTypeContentBanner positionCode:@"home_page_banner_1"];
+    bannerView.frame = CGRectMake(0, 0, 100, 100);
+    [self.view addSubview:bannerView];
+```
+
+运营位其他几种初始化方法
+
+```
++ (HLView *)viewWithViewType:(HLViewType)type positionCode:(NSString *)positionCode block:(nullable HLViewEmptyDataBlock)emptyDataBlock;
+
++ (HLView *)viewWithViewType:(HLViewType)type positionCode:(NSString *)positionCode;
+
+```
+
+判断运营位数据是否为空的方法
+```
+    /**
+     判断运营位有没有数据
+     */
+    + (BOOL)hasDataWithType:(HLViewType)type positionCode:(NSString *)positionCode;
+    
+```
+#### 注意：必须使用HLView指定的初始化方法，创建运营位。可根据判断是否有运营位数据来自行显示隐藏运营位。  
+
+## HLWebViewController的使用
+HLWebViewController继承于UIViewController  
+使用示例
+```
+HLWebViewController *webViewController = [[HLWebViewController alloc] init];
+
+webViewController.requestUrl = @"https://www.baidu.com/";
+
+[self.navigationController pushViewController:webViewController animated:YES];
+
+```
+
 
 
