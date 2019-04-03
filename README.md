@@ -1,12 +1,10 @@
 # 环锂SDK集成文档
----
 <br>
 ## 适用范围
 HuanLiSDK适用于iOS10.0及以上操作系统<br>
 <br>
 
 # 集成准备
----
 <br>
 ## 创建应用并获取AppKey和AppSercret
 AppKey是环锂用来标示App的唯一标识符，集成SDK前需要在创建应用并获取相应的AppKey。
@@ -15,7 +13,6 @@ AppKey是环锂用来标示App的唯一标识符，集成SDK前需要在创建�
 <br>
 
 # 快速集成
----
 可使用Cocoapods进行自动集成或手动下载集成。
 <br>
 ## 自动集成（Cocoapods）
@@ -120,7 +117,6 @@ General->Linked Frameworks and Libraries 添加依赖库<br>
 <br>
 
 # SDK 使用
----
 <br>
 ## 初始化设置
 应用启动后进行HuanLiSDK和第三方平台的初始化工作，实现sdk回调
